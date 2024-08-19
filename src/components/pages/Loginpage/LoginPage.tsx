@@ -18,7 +18,7 @@ const LoginPage = () => {
   };
   return (
     <LoginLayout>
-      <div className="bg-[#F8F8F8] h-fit p-10 w-[45%] rounded-2xl space-y-8">
+      
         <h2 className="text-center text-[36px]">
           Log <span className="text-[#fb780e]">In</span>
         </h2>
@@ -27,18 +27,19 @@ const LoginPage = () => {
           className="flex flex-col gap-8"
         >
           <span className="flex flex-col">
-            <label htmlFor="" className="font-semibold text-[20px]">
+            <label htmlFor="" className="font-semibold text-[16px]">
               Email
             </label>
             <input
               type="text"
-              {...register("Email")}
+              {...register("Email", {required: true})}
               className="px-5 py-4 rounded-md border border-gray-200 text-[18px]"
             />
+            {errors.Email && <p className="text-red-600">* Email field required</p>}
           </span>
           <span className="flex flex-col">
             <span className="flex justify-between items-center">
-              <label htmlFor="" className="font-semibold text-[20px]">
+              <label htmlFor="" className="font-semibold text-[16px]">
                 Password
               </label>
               <Link to="/forgot-password" className="font-medium text-[16px]">
@@ -49,23 +50,24 @@ const LoginPage = () => {
             <span className="relative">
               <input
                 type={showPassword? 'text':'password'}
-                {...register("Password")}
+                {...register("Password", {required: true})}
                 className="px-5 py-4 rounded-md border border-gray-200 text-[18px] w-full"
               />
 
-              <button onClick={() => setShowPassword(c => !c)}>
+              <button type="button" onClick={() => setShowPassword(c => !c)}>
                 {
                     showPassword? <IoEyeOffOutline className="absolute top-4 right-5 text-[28px]" /> :  <IoEyeOutline className="absolute top-4 right-5 text-[28px]" />
                 }
                
               </button>
             </span>
+            {errors.Password && <p className="text-red-600">* Password field required</p>}
           </span>
           <button type="submit" className="px-5 py-4 rounded-md bg-[#fb780e] text-[18px] font-semibold text-[#F8F8F8]">Log In</button>
         </form>
 
         <p className="font-semibold text-center">Don't have an account? <Link to='/signup' className="text-[#fb780e]">Sign Up</Link></p>
-      </div>
+      
     </LoginLayout>
   );
 };
