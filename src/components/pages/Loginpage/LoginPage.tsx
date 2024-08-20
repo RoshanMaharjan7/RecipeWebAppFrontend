@@ -4,6 +4,7 @@ import { IoEyeOutline } from "react-icons/io5";
 import { IoEyeOffOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { Axios } from "../../../../services/AxiosInstance";
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -13,8 +14,9 @@ const LoginPage = () => {
     formState: { errors },
   } = useForm();
 
-  const handleSubmition = (data: any) => {
-    console.log(data);
+  const handleSubmition = async (data: any) => {
+    const response = await Axios.post('/users/login', data)
+    console.log(response.data)
   };
   return (
     <LoginLayout>
@@ -32,10 +34,10 @@ const LoginPage = () => {
             </label>
             <input
               type="text"
-              {...register("Email", {required: true})}
+              {...register("email", {required: true})}
               className="px-5 py-4 rounded-md border border-gray-200 text-[18px]"
             />
-            {errors.Email && <p className="text-red-600">* Email field required</p>}
+            {errors.email && <p className="text-red-600">* Email field required</p>}
           </span>
           <span className="flex flex-col">
             <span className="flex justify-between items-center">
@@ -50,7 +52,7 @@ const LoginPage = () => {
             <span className="relative">
               <input
                 type={showPassword? 'text':'password'}
-                {...register("Password", {required: true})}
+                {...register("password", {required: true})}
                 className="px-5 py-4 rounded-md border border-gray-200 text-[18px] w-full"
               />
 
@@ -61,7 +63,7 @@ const LoginPage = () => {
                
               </button>
             </span>
-            {errors.Password && <p className="text-red-600">* Password field required</p>}
+            {errors.password && <p className="text-red-600">* Password field required</p>}
           </span>
           <button type="submit" className="px-5 py-4 rounded-md bg-[#fb780e] text-[18px] font-semibold text-[#F8F8F8]">Log In</button>
         </form>
