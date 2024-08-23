@@ -5,6 +5,7 @@ import { CiFacebook } from "react-icons/ci";
 import { IoLogoInstagram } from "react-icons/io";
 import { FaXTwitter } from "react-icons/fa6";
 import { Link } from "react-router-dom";
+import { FaRegCopyright } from "react-icons/fa";
 
 const Footer = () => {
   return (
@@ -40,9 +41,9 @@ const Footer = () => {
         </div>
 
       </div>
-      <hr className="border-2 "/>
-      <p className="text-center font-medium text-[18px] py-[1rem]">
-      &#169; {new Date().getFullYear()} TasteTreasure All Rights Reserved
+      <hr className="border-1.5 "/>
+      <p className="text-[18px] py-[1rem] font-righteous flex items-center justify-center gap-2 ">
+      <FaRegCopyright className="text-[18px]"/> {new Date().getFullYear()} TasteTreasure All Rights Reserved
       </p>
     </footer>
   )
