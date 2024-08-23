@@ -6,11 +6,15 @@ import './index.css'
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import LoginPage from './components/pages/Loginpage/LoginPage.tsx';
 import SignUpPage from './components/pages/SignUppage/SignUpPage.tsx';
+import RecipePage from './components/pages/Recipepage/RecipePage.tsx';
+import Test, { loader as TestLoader } from './components/Test.tsx';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App/>,
+    errorElement: <h1>Error</h1>,
+   
   },
   {
     path: "/login",
@@ -19,6 +23,17 @@ const router = createBrowserRouter([
   {
     path: "/signup",
     element: <SignUpPage/>  
+  }, 
+  {
+    path: "/recipes",
+    element: <RecipePage/>,
+    children: [
+      {
+        path: "/recipes/contact/:id",
+        element: <Test/>,
+        loader: TestLoader
+      }
+    ]    
   }
 ]);
 

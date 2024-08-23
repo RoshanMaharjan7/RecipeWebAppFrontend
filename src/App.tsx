@@ -1,3 +1,4 @@
+import { Outlet } from "react-router-dom";
 import "./App.css";
 import Headbar from "./components/Headbar";
 import Layout from "./components/Layout";
@@ -11,6 +12,7 @@ function App() {
       <Headbar/>
       <HomeBanner/>
       <Categories/>
+      <Outlet/>
     </Layout>
     </>
   );
