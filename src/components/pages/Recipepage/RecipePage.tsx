@@ -5,12 +5,13 @@ import RecipeCard from "../../RecipeCard";
 const RecipePage = () => {
   return (
     <Layout>
-        <div className="grid grid-cols-4 gap-4 py-[40px]">
-        <RecipeCard />
-        <RecipeCard />
-        <RecipeCard />
-        <RecipeCard />
-        <RecipeCard />
+      <h2 className="text-[1.8rem] mt-[40px]">Discover <span className="text-[#fb780e]">Recipes</span></h2>
+        <div className="grid grid-cols-4   gap-4 py-[40px]">
+        <RecipeCard title="Choumein" rating={4} />
+        <RecipeCard title="Mo:Mo" rating={5} />
+        <RecipeCard title="Keema Noodle" rating={3} />
+        <RecipeCard title="Kothey Mo:Mo" rating={1}/>
+        <RecipeCard title="Mo:Mo" rating={2} />
         </div>
         <Outlet/>
      
