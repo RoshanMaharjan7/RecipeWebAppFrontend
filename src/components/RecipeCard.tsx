@@ -7,7 +7,7 @@ const RecipeCard = ({title, rating }:{title:string, rating: number}) => {
   return (
     <div className="bg-white rounded-lg flex-grow flex items-center p-4 border border-gray-200 shadow-md gap-4">
       <img src="../nonVeg.jpg" alt="" className="w-[45%] rounded-md" />
-      <div className="flex flex-col  justify-between h-full flex-grow gap-2">
+      <div className="flex flex-col  justify-between h-full flex-grow gap-3">
         <span className="flex flex-col justify-center flex-grow gap-1">
         <h3 className="font-medium text-[16px]">{title}</h3>
         <RatingStars rating={rating} />
