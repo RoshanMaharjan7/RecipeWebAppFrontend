@@ -1,4 +1,6 @@
 import { NavLink } from "react-router-dom";
+import ResponsiveSidebar from "./ResponsiveSidebar";
+import Avatar from "./Avatar";
 
 const Navbar = () => {
   return (
@@ -6,7 +8,7 @@ const Navbar = () => {
       <h1 className="drop-shadow-[0_35px_35px_rgba(0,0,0,0.25)] text-[#fb780e] text-[24px] sm:text-3xl">
         TasteTreasure
       </h1>
-      <span className="hidden lg:flex justify-evenly flex-grow px-20 max-w-[45rem] ">
+      <span className="hidden lg:flex justify-evenly flex-grow  xl:max-w-[40rem] ">
         <NavLink
           to={"/"}
           style={({ isActive }) => {
@@ -25,15 +27,7 @@ const Navbar = () => {
         >
           Recipes
         </NavLink>
-        <NavLink
-          to={"/jfkd"}
-          style={({ isActive }) => {
-            return isActive ? { color: "#fb780e", fontWeight: "600" } : {};
-          }}
-          className="text-[18px] font-medium"
-        >
-          Category
-        </NavLink>
+
         <NavLink
           to={"/meal-plan"}
           style={({ isActive }) => {
@@ -43,9 +37,22 @@ const Navbar = () => {
         >
           Meal Plan
         </NavLink>
+
+        <NavLink
+          to={"/contactus"}
+          style={({ isActive }) => {
+            return isActive ? { color: "#fb780e", fontWeight: "600" } : {};
+          }}
+          className="text-[18px] font-medium"
+        >
+          Contact Us
+        </NavLink>
       </span>
 
-      <span>Profile</span>
+      <span className="flex items-center">
+        <Avatar className="hidden lg:flex" />
+        <ResponsiveSidebar />
+      </span>
     </nav>
   );
 };
