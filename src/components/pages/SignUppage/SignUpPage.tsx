@@ -32,7 +32,7 @@ const SignUpPage = () => {
           <input
             type="text"
             {...register("fullName", { required: true })}
-            className="px-5 py-4 rounded-md border border-gray-200 text-[18px]"
+            className="px-5 py-3 md:py-4 rounded-md border border-gray-200 text-[14px] md:text-[18px]"
           />
           {errors.fullName && (
             <p className="text-red-600">* Email field required</p>
@@ -46,7 +46,7 @@ const SignUpPage = () => {
           <input
             type="text"
             {...register("Email", { required: true })}
-            className="px-5 py-4 rounded-md border border-gray-200 text-[18px]"
+            className="px-5 py-3 md:py-4 rounded-md border border-gray-200 text-[14px] md:text-[18px]"
           />
           {errors.Email && (
             <p className="text-red-600">* Email field required</p>
@@ -61,14 +61,14 @@ const SignUpPage = () => {
             <input
               type={showPassword ? "text" : "password"}
               {...register("Password", { required: true })}
-              className="px-5 py-4 rounded-md border border-gray-200 text-[18px] w-full"
+              className="px-5 py-3 md:py-4 rounded-md border border-gray-200 text-[14px] md:text-[18px] w-full"
             />
 
             <button type="button" onClick={() => setShowPassword((c) => !c)}>
               {showPassword ? (
-                <IoEyeOffOutline className="absolute top-4 right-5 text-[28px]" />
+                <IoEyeOffOutline className="absolute top-3 md:top-4 right-3 md:right-5 text-[22px] md:text-[28px]" />
               ) : (
-                <IoEyeOutline className="absolute top-4 right-5 text-[28px]" />
+                <IoEyeOutline className="absolute top-3 md:top-4 right-3 md:right-5 text-[22px] md:text-[28px]" />
               )}
             </button>
           </span>
@@ -78,13 +78,13 @@ const SignUpPage = () => {
         </span>
         <button
           type="submit"
-          className="px-5 py-4 rounded-md bg-[#fb780e] text-[18px] font-semibold text-[#F8F8F8]"
+          className="px-5 py-3 md:py-4 rounded-md bg-[#fb780e] text-[18px] font-semibold text-[#F8F8F8]"
         >
           Sign Up
         </button>
       </form>
 
-      <p className="font-semibold text-center">
+      <p className="font-semibold text-center text-[14px] md:text-[16px]">
         Already have an account?{" "}
         <Link to="/login" className="text-[#fb780e]">
           Log In
