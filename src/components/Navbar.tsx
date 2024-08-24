@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 const Navbar = () => {
   return (
     <nav className="flex justify-between items-center py-[20px] gap-10">
-      <h1 className="drop-shadow-[0_35px_35px_rgba(0,0,0,0.25)] text-[#fb780e] text-[26px] md:text-3xl">
+      <h1 className="drop-shadow-[0_35px_35px_rgba(0,0,0,0.25)] text-[#fb780e] text-[24px] sm:text-3xl">
         TasteTreasure
       </h1>
       <span className="hidden lg:flex justify-evenly flex-grow px-20 max-w-[45rem] ">
