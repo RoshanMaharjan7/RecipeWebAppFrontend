@@ -5,10 +5,10 @@ import Footer from './Footer';
 const Layout = ({ children }:{children: React.ReactNode}) => {
   return (
     <div className='bg-[#F8F8F8]'>
-      <header className='px-[120px]'>
+      <header className='px-[24px] sm:px-[40px] md:px-[120px]'>
         <Navbar/>
       </header>
-      <main className='px-[120px]'>{children}</main>
+      <main className='px-[24px] sm:px-[40px] md:px-[120px]'>{children}</main>
       <Footer/>
     </div>
   );

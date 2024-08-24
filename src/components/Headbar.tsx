@@ -3,10 +3,10 @@ import { TfiSearch } from "react-icons/tfi";
 const Headbar = () => {
   return (
     <div className="flex justify-between items-center py-[20px]">
-      <h2 className="font-righteous text-[24px]">
+      <h2 className="font-righteous text-[20px]  sm:text-[24px]">
         Learn, Cook & Eat Your Food
       </h2>
-      <span className="relative max-w-[300px] flex-grow">
+      <span className="relative max-w-[300px] flex-grow hidden lg:block">
         <input
           type="text"
           placeholder="Search Recipe"

@@ -9,8 +9,8 @@ import { FaRegCopyright } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="bg-white px-[120px]">
-      <div className="flex justify-between flex-wrap py-[1.5rem]">
+    <footer className="bg-white px-[24px] sm:px-[40px] md:px-[120px]">
+      <div className="flex justify-between flex-wrap py-[1.5rem] space-y-4">
         <div className="flex flex-col gap-3 max-w-[300px]">
           <h3 className="text-[#fb780e] text-[1.5rem]">TasteTreasure</h3>
           <span className="text-slate-400 text-[14px] space-y-2">
