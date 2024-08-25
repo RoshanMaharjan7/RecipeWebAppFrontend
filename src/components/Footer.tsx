@@ -10,7 +10,7 @@ import { FaRegCopyright } from "react-icons/fa";
 const Footer = () => {
   return (
     <footer className="bg-white px-[24px] sm:px-[40px] md:px-[120px]">
-      <div className="flex justify-between flex-wrap py-[1.5rem] space-y-4">
+      <div className="flex justify-between flex-wrap py-[1.5rem] space-y-4 space-x-1">
         <div className="flex flex-col gap-3 max-w-[300px]">
           <h3 className="text-[#fb780e] text-[1.5rem]">TasteTreasure</h3>
           <span className="text-slate-400 text-[14px] space-y-2">
@@ -42,7 +42,7 @@ const Footer = () => {
 
       </div>
       <hr className="border-1.5 "/>
-      <p className="text-[18px] py-[1rem] font-righteous flex items-center justify-center gap-2 ">
+      <p className="sm:text-[18px] py-[1rem] font-righteous flex items-center justify-center gap-2 ">
       <FaRegCopyright className="text-[18px]"/> {new Date().getFullYear()} TasteTreasure All Rights Reserved
       </p>
     </footer>

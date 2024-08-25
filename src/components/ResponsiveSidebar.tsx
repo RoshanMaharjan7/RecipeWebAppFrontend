@@ -14,15 +14,15 @@ const ResponsiveSidebar = () => {
       </button>
       <div
         onClick={() => setOpen(false)}
-        className={`fixed top-0 right-0 h-screen w-screen bg-black opacity-80 z-40 transform ${
+        className={`fixed top-0 right-0 h-screen w-screen bg-black backdrop-blur opacity-60 z-40 transform ${
           open ? "" : "hidden"
         } transition-transform duration-500 ease-out`}
       ></div>
       <div
-        className={`fixed top-0 right-0 h-screen w-[260px] backdrop-blur sm:w-[300px] bg-white border z-50 transform ${
+        className={`fixed top-0 right-0 h-screen w-[260px]  sm:w-[300px] bg-[#F8F8F8] border z-50 transform ${
           open ? "-translate-x-0" : "translate-x-full"
         } transition-transform ${
-          open ? "durati    on-500" : "duration-400"
+          open ? "duration-500" : "duration-300"
         } ease-in-out`}
       >
         <IoClose
