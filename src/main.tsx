@@ -2,6 +2,7 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import LoginPage from './components/pages/Loginpage/LoginPage.tsx';
@@ -40,6 +41,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
+    <QueryClientProvider client={new QueryClient()}>
     <RouterProvider router={router} />
+    </QueryClientProvider>
   </StrictMode>,
 )

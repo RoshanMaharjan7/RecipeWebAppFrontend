@@ -3,10 +3,10 @@ import RatingStars from "./RatingStars";
 import { MdFavoriteBorder } from "react-icons/md";
 // import { MdFavorite } from "react-icons/md";
 
-const RecipeCard = ({title, rating }:{title:string, rating: number}) => {
+const RecipeCard = ({title, rating, recipeImage }:{title:string, rating: number, recipeImage: string}) => {
   return (
     <div className="bg-white rounded-lg flex-grow flex items-center p-4 border border-gray-200 shadow-md gap-4 max-h-[152px] sm:max-h-[178px] min-w-[294px]">
-      <img src="../nonVeg.jpg" alt="" className="h-full rounded-md" />
+      <img src={recipeImage} alt="" className="h-full rounded-md" />
       <div className="flex flex-col  justify-between h-full flex-grow gap-3">
         <span className="flex flex-col justify-center flex-grow gap-1">
         <h3 className="font-medium sm:text-[18px]">{title}</h3>
