@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import ResponsiveSidebar from "./ResponsiveSidebar";
 import Avatar from "./Avatar";
 
@@ -49,7 +49,10 @@ const Navbar = () => {
         </NavLink>
       </span>
 
+      
+
       <span className="flex items-center">
+        <Link to='/recipes/add' className="bg-[#fb780e] text-[#F8F8F8] px-3 py-1.5 rounded-md font-medium mr-5 hidden lg:block">Add Recipe</Link>
         <Avatar className="hidden lg:flex" />
         <ResponsiveSidebar />
       </span>
