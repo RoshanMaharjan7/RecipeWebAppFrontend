@@ -24,7 +24,7 @@ export async function loader (props:any) {
     }
 }
 
-const Test = () => {
+const   Test = () => {
     const {team}:any = useLoaderData();
   return (
     <div>Test = {team.name}</div>

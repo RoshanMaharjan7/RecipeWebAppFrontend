@@ -20,3 +20,16 @@ export const useGetAllCategory = () => {
         }
     })
 }
+
+
+// Fetch Category By ID
+export const useGetCategoryById = (categoryId: string) => {
+    return useQuery<any>({
+      queryKey: [categoryId],
+      queryFn: async (id: any): Promise<any> => {
+        const response = await Axios.get('/category/' + id.queryKey[0]);
+        console.log(response.data);
+        return await response.data;
+      },
+    });
+  };
