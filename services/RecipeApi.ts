@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import {Axios} from "./AxiosInstance"
 
 export const useGetAllRecipes = () => {
@@ -16,6 +16,7 @@ export const useGetAllCategory = () => {
         queryKey: ["category"],
         queryFn: async () => {
             const response = await Axios.get('/category');
+            console.log(response.data)
             return await response.data
         }
     })
@@ -46,3 +47,14 @@ export const useGetRecipeById = (recipeId: string) => {
       },
     });
   };
+
+// Post Review
+export const usePostReview = () => {
+  return useMutation({
+    mutationFn: async (postData) => {
+      console.log(postData);
+      const res = await Axios.post('/reviews', postData);
+      return await res.data;
+    },
+  });
+};

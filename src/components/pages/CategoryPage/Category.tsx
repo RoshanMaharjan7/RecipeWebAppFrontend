@@ -1,5 +1,4 @@
 import Layout from '../../Layout'
-import Headbar from '../../Headbar'
 import { useParams } from 'react-router-dom'
 import { useGetCategoryById } from '../../../../services/RecipeApi'
 import RecipeCard from '../../RecipeCard'
@@ -16,8 +15,8 @@ const Category = () => {
       </h2>
       <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 3xl:grid-cols-4 gap-4 py-[20px] md:py-[40px]">
         {
-          categoryData?.data.recipes.map(({title, rating, recipeImage}:{title:string, rating: string, recipeImage: string})=> (
-            <RecipeCard title={title} rating={Number(rating)} recipeImage={recipeImage}/>
+          categoryData?.data.recipes.map(({_id,title, rating, recipeImage}:{_id:string,title:string, rating: string, recipeImage: string})=> (
+            <RecipeCard key={_id} id={_id} title={title} rating={Number(rating)} recipeImage={recipeImage}/>
           ))
         }
       </div>

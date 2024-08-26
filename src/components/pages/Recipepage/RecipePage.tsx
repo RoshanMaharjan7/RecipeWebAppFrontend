@@ -1,7 +1,6 @@
 import { Outlet } from "react-router-dom";
 import Layout from "../../Layout";
 import RecipeCard from "../../RecipeCard";
-import Headbar from "../../Headbar";
 import { useGetAllRecipes } from "../../../../services/RecipeApi";
 
 
@@ -16,8 +15,8 @@ const RecipePage = () => {
       </h2>
       <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 3xl:grid-cols-4 gap-4 py-[20px] md:py-[40px]">
         {
-          recipeData?.data.map(({title, rating, recipeImage}:{title:string, rating: string, recipeImage: string})=> (
-            <RecipeCard title={title} rating={Number(rating)} recipeImage={recipeImage}/>
+          recipeData?.data.map(({_id,title, rating, recipeImage}:{_id:string,title:string, rating: string, recipeImage: string})=> (
+            <RecipeCard key={_id} id={_id} title={title} rating={Number(rating)} recipeImage={recipeImage}/>
           ))
         }
       </div>

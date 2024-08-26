@@ -10,6 +10,7 @@ import SignUpPage from './components/pages/SignUppage/SignUpPage.tsx';
 import RecipePage from './components/pages/Recipepage/RecipePage.tsx';
 import Test, { loader as TestLoader } from './components/Test.tsx';
 import Category from './components/pages/CategoryPage/Category.tsx'
+import Recipe from './components/pages/Recipepage/Recipe.tsx'
 
 const router = createBrowserRouter([
   {
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
         loader: TestLoader
       }
     ]    
+  },
+  {
+    path:"/recipes/:id",
+    element: <Recipe/>
   },
   {
     path: "/category/:id",
