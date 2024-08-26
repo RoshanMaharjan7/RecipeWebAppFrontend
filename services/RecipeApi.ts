@@ -33,3 +33,16 @@ export const useGetCategoryById = (categoryId: string) => {
       },
     });
   };
+
+
+// Fetch Category By ID
+export const useGetRecipeById = (recipeId: string) => {
+    return useQuery<any>({
+      queryKey: [recipeId],
+      queryFn: async (id: any): Promise<any> => {
+        const response = await Axios.get('/recipe/' + id.queryKey[0]);
+        console.log(response.data);
+        return await response.data;
+      },
+    });
+  };
