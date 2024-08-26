@@ -1,4 +1,3 @@
-import React from 'react'
 import Layout from '../../Layout'
 import Headbar from '../../Headbar'
 import { useParams } from 'react-router-dom'
@@ -12,7 +11,6 @@ const Category = () => {
 
   return (
     <Layout>
-        <Headbar/>
         <h2 className="text-[24px] md:text-[1.8rem] mt-[12px] sm:mt-[20px]">
         {categoryData?.data.categoryTitle} <span className="text-[#fb780e]">Recipes</span>
       </h2>

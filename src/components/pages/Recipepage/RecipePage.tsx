@@ -11,7 +11,6 @@ const RecipePage = () => {
 
   return (
     <Layout>
-      <Headbar />
       <h2 className="text-[24px] md:text-[1.8rem] mt-[12px] sm:mt-[20px]">
         Discover <span className="text-[#fb780e]">Recipes</span>
       </h2>
