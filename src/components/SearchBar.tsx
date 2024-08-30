@@ -15,10 +15,6 @@ const SearchBar = ({className}:{className:string}) => {
     setSearchData(response.data.data)
   }
 
-  useEffect(()=>{
-    console.log(searchData)
-  },[searchData])
-
 
   useEffect(()=> {
     if(query !== ""){

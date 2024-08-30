@@ -2,9 +2,10 @@ import { useForm } from "react-hook-form";
 import LoginLayout from "../../LoginLayout";
 import { IoEyeOutline } from "react-icons/io5";
 import { IoEyeOffOutline } from "react-icons/io5";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { Axios } from "../../../../services/AxiosInstance";
+import Cookies from "js-cookie";
+import { useLogin } from "../../../../services/AuthenticationApi";
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -14,9 +15,19 @@ const LoginPage = () => {
     formState: { errors },
   } = useForm();
 
+  const { mutate } = useLogin();
+
+  const navigate = useNavigate()
+
   const handleSubmition = async (data: any) => {
-    const response = await Axios.post("/users/login", data);
-    console.log(response.data);
+    mutate(data, {
+      onSuccess: (data) => {
+        console.log(data)
+        Cookies.set("token", data.token);
+        navigate('/')
+      },
+    });
+    // Cookies.set('token', response.data.token)
   };
   return (
     <LoginLayout>

@@ -11,6 +11,7 @@ import RecipePage from './components/pages/Recipepage/RecipePage.tsx';
 import Test, { loader as TestLoader } from './components/Test.tsx';
 import Category from './components/pages/CategoryPage/Category.tsx'
 import Recipe from './components/pages/Recipepage/Recipe.tsx'
+import AddRecipe from './components/pages/Recipepage/AddRecipe.tsx'
 
 const router = createBrowserRouter([
   {
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
     ]    
   },
   {
+    path:"/recipes/add",
+    element: <AddRecipe/>
+  },
+  {
     path:"/recipes/:id",
     element: <Recipe/>
   },
@@ -53,6 +58,7 @@ createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <QueryClientProvider client={new QueryClient()}>
     <RouterProvider router={router} />
+
     </QueryClientProvider>
   </StrictMode>,
 )

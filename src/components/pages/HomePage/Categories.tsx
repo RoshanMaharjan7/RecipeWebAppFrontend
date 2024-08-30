@@ -10,7 +10,7 @@ const Categories = () => {
         <div className="grid xl:grid-cols-3 lg:grid-cols-2 grid-cols-1 gap-4">
           {
             categoryData?.data.map((category:any)=>(
-              <CategoryCard categoryData={category}/>
+              <CategoryCard key={category._id} categoryData={category}/>
             ))
           }
         </div>
