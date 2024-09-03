@@ -58,3 +58,19 @@ export const usePostReview = () => {
     },
   });
 };
+
+
+// Post new Recipe
+export const useCreateRecipe = () => {
+  return useMutation({
+    mutationFn: async (postData:any) => {
+      console.log(postData);
+      const res =  await Axios.post('/recipe', postData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      });
+      return await res.data;
+    },
+  });
+};

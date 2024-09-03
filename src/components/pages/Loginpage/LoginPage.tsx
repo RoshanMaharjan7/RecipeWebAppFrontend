@@ -2,8 +2,9 @@ import { useForm } from "react-hook-form";
 import LoginLayout from "../../LoginLayout";
 import { IoEyeOutline } from "react-icons/io5";
 import { IoEyeOffOutline } from "react-icons/io5";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, redirect, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { Axios } from "../../../../services/AxiosInstance";
 import Cookies from "js-cookie";
 import { useLogin } from "../../../../services/AuthenticationApi";
 
@@ -27,7 +28,6 @@ const LoginPage = () => {
         navigate('/')
       },
     });
-    // Cookies.set('token', response.data.token)
   };
   return (
     <LoginLayout>
