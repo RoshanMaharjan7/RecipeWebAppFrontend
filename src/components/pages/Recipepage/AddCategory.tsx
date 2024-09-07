@@ -7,7 +7,7 @@ type CategoryData = {
 };
 
 const AddCategory = ({appendCategory, setQuery}:any) => {
-  const { register, handleSubmit, control } = useForm<CategoryData>({
+  const { register, handleSubmit } = useForm<CategoryData>({
     defaultValues: {
       categoryTitle: "",
       categoryImage: null,

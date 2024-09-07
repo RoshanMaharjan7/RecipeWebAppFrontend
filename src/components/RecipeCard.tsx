@@ -33,7 +33,7 @@ const RecipeCard = ({
             }
         </div>
         <span className="flex flex-col justify-center flex-grow gap-1">
-          <h3 className=" sm:text-[18px] font-semibold text-[#000000]">{title}</h3>
+          <h3 className=" sm:text-[18px] font-semibold text-[#000000] font-poppins">{title}</h3>
           <RatingStars rating={rating} />
         </span>
 

@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { HiMenuAlt3 } from "react-icons/hi";
 import { IoClose } from "react-icons/io5";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import Avatar from "./Avatar";
 import SearchBar from "./SearchBar";
+import { UserState } from "../providers/UserSlice";
 
-const ResponsiveSidebar = () => {
+const ResponsiveSidebar = ({userData}:{userData: UserState}) => {
   const [open, setOpen] = useState(false);
   return (
     <>
@@ -30,7 +31,13 @@ const ResponsiveSidebar = () => {
           className="absolute top-3 right-3   text-[28px]"
         />
         <div className="flex flex-col h-full px-[20px] py-[80px] gap-10">
-          <Avatar />
+        {
+          userData.fullName === "" ? (
+            <Link to='/login' className="bg-[#fb780e] text-[#F8F8F8] px-3 py-1.5 rounded-md font-medium">Login</Link>
+          ) : (
+          <Avatar username={userData?.fullName} />
+        )
+      }
           <SearchBar className="" />
           <span className="flex flex-col max-w-[45rem] h-fit gap-4 ">
             <NavLink

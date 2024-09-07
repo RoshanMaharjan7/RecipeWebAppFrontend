@@ -51,9 +51,12 @@ const Recipe = () => {
             <span className="flex flex-col gap-2">
               {RecipeData?.data.ingredients.map(
                 (ingredient: any, index: number) => (
+                  <>
+                  <p key={ingredient._id}>{ingredient.quantity}</p>
                   <p key={index} className="text-[18px]">
-                    {ingredient}
+                    {ingredient.name}
                   </p>
+                  </>
                 )
               )}
             </span>
