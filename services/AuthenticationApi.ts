@@ -11,6 +11,16 @@ export const useLogin = () => {
   });
 };
 
+export const useSignUp = () => {
+  return useMutation({
+    mutationFn: async (postData) => {
+      console.log(postData);
+      const res = await Axios.post("/users/register", postData);
+      return await res.data;
+    },
+  });
+}
+
 export const useGetCurrentUser = () => {
   return useQuery<any>({
     queryKey: ["currentUser"],
