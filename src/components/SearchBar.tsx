@@ -42,11 +42,11 @@ const SearchBar = ({ className }: { className: string }) => {
           Search Results
         </p>
         <hr className="my-1" />
-        <span className="flex flex-col">
+        <span className="flex flex-col px-2">
           {searchData?.map(({ _id, title }: { _id: string; title: string }) => (
             <Link
               to={`/recipes/${_id}`}
-               className=" py-1.5 text-left text-[14px] hover:bg-slate-100 px-4 rounded-md"
+               className=" py-1.5 text-left text-[14px] hover:bg-slate-100 px-2 rounded-md"
             >
               {title}
             </Link>

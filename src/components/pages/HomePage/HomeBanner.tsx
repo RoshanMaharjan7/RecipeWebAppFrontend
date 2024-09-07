@@ -2,7 +2,7 @@ const HomeBanner = () => {
   return (
     <div className="flex h-fit lg:h-[79vh] justify-between py-[20px] md:py-0">
       <div className="lg:w-[50%] flex justify-center flex-col gap-8">
-        <h3 className="text-[40px] md:text-[48px] lg:text-[56px] font-semibold flex flex-col">
+        <h3 className="text-[40px] md:text-[48px] lg:text-[56px] font-semibold flex flex-col font-righteous">
           Discover Your New Favourite Dish With Our{" "}
           <span className="text-[#fb780e]">Tasty Recipes</span>
         </h3>

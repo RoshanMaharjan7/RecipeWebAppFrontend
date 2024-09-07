@@ -9,7 +9,11 @@ export default {
         poppins: ["Poppins"],
 
       },
+      colors: {
+        primary: "#fb780e",
+      },
     },
+   
   },
   plugins: [],
 };

@@ -18,7 +18,7 @@ const RecipeCard = ({
 }) => {
   console.log(category);
   return (
-    <div className="bg-white rounded-lg flex-grow flex flex-col border border-gray-200 shadow-xl gap-2 h-fit">
+    <div className="bg-white rounded-lg flex-grow flex flex-col border border-grey-200 shadow-xl gap-2 h-fit">
       <img
         src={recipeImage}
         alt=""
@@ -33,21 +33,21 @@ const RecipeCard = ({
             }
         </div>
         <span className="flex flex-col justify-center flex-grow gap-1">
-          <h3 className="font-medium sm:text-[18px]">{title}</h3>
+          <h3 className=" sm:text-[18px] font-semibold text-[#000000]">{title}</h3>
           <RatingStars rating={rating} />
         </span>
 
-        <hr className="border-1.5" />
+        
         <span className="flex justify-between">
-          <button className="flex items-center justify-center border-2 border-black p-1 rounded-full">
-            <MdFavoriteBorder className="text-[18px]" />
-          </button>
           <Link
             to={`/recipes/${id}`}
-            className="font-righteous border-2 border-[#00B412] text-[#00B412] bg-[#DEEEDF] flex items-center justify-center px-2 py-1 text-[12px] rounded-[16px] font-medium h-fit hover:bg-[#00B412] hover:text-white transition-all"
+            className="text-primary underline"
           >
             View Recipe
           </Link>
+          <button className="flex items-center justify-center border-2 border-black p-1 rounded-full">
+            <MdFavoriteBorder className="text-[18px]" />
+          </button>
         </span>
       </div>
     </div>
