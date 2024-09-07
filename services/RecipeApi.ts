@@ -74,3 +74,17 @@ export const useCreateRecipe = () => {
     },
   });
 };
+
+export const useCreateCategory = () => {
+  return useMutation({
+    mutationFn: async (postData:any) => {
+      console.log(postData);
+      const res =  await Axios.post('/category', postData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      });
+      return await res.data;
+    },
+  });
+}

@@ -41,7 +41,7 @@ const RecipeCard = ({
         <span className="flex justify-between">
           <Link
             to={`/recipes/${id}`}
-            className="text-primary underline"
+            className="text-[var(--primary)] underline"
           >
             View Recipe
           </Link>

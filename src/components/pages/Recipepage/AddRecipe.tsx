@@ -54,20 +54,23 @@ const AddRecipe = () => {
     name: "directions" as const,
   });
 
-  const {mutate} = useCreateRecipe();
+  const { mutate } = useCreateRecipe();
 
   // form submit function
   const onSubmit = (data: FormValues) => {
     console.log(data);
 
-    const postData = {...data, recipeImage: data.recipeImage[0], directions: data.directions.map(({step})=>step)};
+    const postData = {
+      ...data,
+      recipeImage: data.recipeImage[0],
+      directions: data.directions.map(({ step }) => step),
+    };
     console.log(postData);
-    mutate(postData,{onSuccess:(data)=>{
-      console.log(data);
-    }});
-
-
-
+    mutate(postData, {
+      onSuccess: (data) => {
+        console.log(data);
+      },
+    });
   };
 
   return (
@@ -278,11 +281,9 @@ const AddRecipe = () => {
         </div>
 
         <hr className="border-slate-300 border-1 my-6" />
-        <button
-              className=" bg-gradient-to-r from-[#f7ba2c] via-[#fb780e] to-[#ea5459] text-white text-[18px] font-medium px-2 py-2 rounded-md flex gap-2 w-full items-center justify-center"
-            >
-              Add Recipe
-            </button>
+        <button className=" bg-gradient-to-r from-[#f7ba2c] via-[#fb780e] to-[#ea5459] text-white text-[18px] font-medium px-2 py-2 rounded-md flex gap-2 w-full items-center justify-center">
+          Add Recipe
+        </button>
       </form>
     </Layout>
   );

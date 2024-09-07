@@ -1,8 +1,23 @@
 import { useEffect, useState } from "react";
 import { cn } from "../lib/utils.ts";
 import { Axios } from "../../services/AxiosInstance.ts";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "./ui/dialog";
+import AddCategory from "./pages/Recipepage/AddCategory.tsx";
 
-const CategorySearchBar = ({ className , appendCategory}: { className: string; appendCategory: any }) => {
+const CategorySearchBar = ({
+  className,
+  appendCategory,
+}: {
+  className: string;
+  appendCategory: any;
+}) => {
   const [query, setQuery] = useState("");
   const [showSearch, setShowSearch] = useState(false);
   const [searchData, setSearchData] = useState([]);
@@ -23,11 +38,10 @@ const CategorySearchBar = ({ className , appendCategory}: { className: string; a
     }
   }, [query]);
 
-
-  const handleClick = (id:string, categoryTitle:string) => {
-    appendCategory({categoryId:id, categoryName:categoryTitle})
+  const handleClick = (id: string, categoryTitle: string) => {
+    appendCategory({ categoryId: id, categoryName: categoryTitle });
     setQuery("");
-  }
+  };
   return (
     <div className={cn("relative h-fit", className)}>
       <input
@@ -48,7 +62,13 @@ const CategorySearchBar = ({ className , appendCategory}: { className: string; a
         <hr className="my-1" />
         <span className="flex flex-col">
           {searchData?.map(
-            ({ _id, categoryTitle }: { _id: string; categoryTitle: string }) => (
+            ({
+              _id,
+              categoryTitle,
+            }: {
+              _id: string;
+              categoryTitle: string;
+            }) => (
               <button
                 key={_id}
                 type="button"
@@ -59,16 +79,26 @@ const CategorySearchBar = ({ className , appendCategory}: { className: string; a
               </button>
             )
           )}
-          {
-            searchData.length === 0 && ( 
-                <p className="px-4 py-2 text-slate-400 text-[14px] text-center">No category found</p>
-            )
-          }
+          {searchData.length === 0 && (
+            <p className="px-4 py-2 text-slate-400 text-[14px] text-center">
+              No category found
+            </p>
+          )}
         </span>
         <hr className="my-1" />
-        <button type="button" className=" py-1.5 w-full text-[14px] max-h-fit hover:bg-slate-100 px-4 rounded-md text-[#fb780e] font-medium">
-          Add New Category
-        </button>
+        <Dialog>
+          <DialogTrigger className=" py-1.5 w-full text-[14px] max-h-fit hover:bg-slate-100 px-4 rounded-md text-[#fb780e] font-medium">
+            Add New Category
+          </DialogTrigger>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle className="text-[var(--primary)] font-medium text-2xl">
+                <span className="text-black">Add New</span> Category
+              </DialogTitle>
+            </DialogHeader>
+            <AddCategory appendCategory={appendCategory} setQuery={setQuery}/>
+          </DialogContent>
+        </Dialog>
       </span>
     </div>
   );
