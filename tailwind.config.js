@@ -5,7 +5,8 @@ export default {
     extend: {
       fontFamily: {
         roboto: ["Roboto", "sans-serif"],
-        righteous: ["Righteous"]
+        righteous: ["Righteous"],
+        poppins: ["Poppins"],
 
       },
     },

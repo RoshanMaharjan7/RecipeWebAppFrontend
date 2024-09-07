@@ -60,7 +60,7 @@ const AddRecipe = () => {
   const onSubmit = (data: FormValues) => {
     console.log(data);
 
-    const postData = {...data, recipeImage: data.recipeImage[0], directions: data.directions.map(({step})=>step), category: data.category.map(({categoryId})=>categoryId)};
+    const postData = {...data, recipeImage: data.recipeImage[0], directions: data.directions.map(({step})=>step)};
     console.log(postData);
     mutate(postData,{onSuccess:(data)=>{
       console.log(data);
