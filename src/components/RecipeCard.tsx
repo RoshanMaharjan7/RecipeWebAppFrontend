@@ -1,6 +1,7 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import RatingStars from "./RatingStars";
 import { MdFavoriteBorder } from "react-icons/md";
+import FavouritesButton from "./utils/FavouritesButton";
 // import { MdFavorite } from "react-icons/md";
 
 const RecipeCard = ({
@@ -16,10 +17,11 @@ const RecipeCard = ({
   recipeImage: string;
   category: any;
 }) => {
+  const navigate = useNavigate();
   console.log(category);
   return (
-     <Link
-    to={`/recipes/${id}`} className="bg-white rounded-lg flex-grow flex flex-col border border-grey-200 shadow-lg hover:shadow-2xl gap-2 h-fit">
+     <div
+    onClick={() => navigate(`/recipes/${id}`)} className="bg-white rounded-lg flex-grow flex flex-col border border-grey-200 shadow-lg hover:shadow-2xl hover:cursor-pointer gap-2 h-fit">
       <img
         src={recipeImage}
         alt=""
@@ -46,12 +48,13 @@ const RecipeCard = ({
           >
             View Recipe
           </Link>
-          <button className="flex items-center justify-center border-2 border-black p-1 rounded-full">
-            <MdFavoriteBorder className="text-[18px]" />
-          </button>
+          <span onClick={(e)=> e.stopPropagation()}>
+          <FavouritesButton recipeId={id} />
+          </span>
+          
         </span>
       </div>
-    </Link>
+    </div>
   );
 };
 

@@ -15,6 +15,7 @@ import AddRecipe from "./components/pages/Recipepage/AddRecipe.tsx";
 import { store } from "./providers/store";
 import { Provider } from "react-redux";
 import { Toaster } from 'react-hot-toast';
+import ProfilePage from "./components/pages/ProfilePage/ProfilePage.tsx";
 
 const router = createBrowserRouter([
   {
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
     path: "/category/:id",
     element: <Category />,
   },
+  {
+    path:'/profile',
+    element: <ProfilePage/>
+  }
 ]);
 
 createRoot(document.getElementById("root")!).render(

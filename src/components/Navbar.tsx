@@ -17,8 +17,10 @@ import {
 import { FaUser } from "react-icons/fa";
 import { HiOutlineLogout } from "react-icons/hi";
 import Cookies from "js-cookie";
+import { useNavigate} from "react-router-dom"
 
 const Navbar = () => {
+  const navigate = useNavigate();
   const userData = useSelector((state: RootState) => state.user);
   console.log(userData);
   const dispatch = useDispatch();
@@ -113,7 +115,7 @@ const Navbar = () => {
             <DropdownMenuContent>
               <DropdownMenuLabel>My Account</DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <DropdownMenuItem className="flex gap-2 cursor-pointer"><FaUser size={16}/>Profile</DropdownMenuItem>
+              <DropdownMenuItem className="flex gap-2 cursor-pointer" onClick={() => navigate('/profile')}><FaUser size={16}/>Profile</DropdownMenuItem>
               <DropdownMenuItem className="flex gap-2 cursor-pointer" onClick={handleLogout}><HiOutlineLogout size={18}/>Logout</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>

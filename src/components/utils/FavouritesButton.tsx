@@ -24,8 +24,8 @@ const FavouritesButton = ({recipeId}:{recipeId:string}) => {
     
 
 
-    const handleFavourite = () => {
-        console.log("isFavourte",isFavourite)
+    const handleFavourite = (e:any) => {
+        e.stopPropagation();
         if(isFavourite){
             removeFavourite({recipeId}, {onSuccess: () => {
                 console.log('success')
