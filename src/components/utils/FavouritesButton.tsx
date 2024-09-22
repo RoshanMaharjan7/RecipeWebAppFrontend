@@ -17,7 +17,6 @@ const FavouritesButton = ({recipeId}:{recipeId:string}) => {
     useEffect(() => {
         if (favouritesData && favouritesData.favouriteRecipes) {
             const isFav = favouritesData.favouriteRecipes.some((recipe: any) => recipe === recipeId);
-            console.log(isFav);
             setIsFavourite(isFav);
         }
     }, [favouritesData, recipeId]);
@@ -28,7 +27,6 @@ const FavouritesButton = ({recipeId}:{recipeId:string}) => {
         e.stopPropagation();
         if(isFavourite){
             removeFavourite({recipeId}, {onSuccess: () => {
-                console.log('success')
                 setIsFavourite(false)
                 toast.success('Removed from favourites')
             }, onError: () => {

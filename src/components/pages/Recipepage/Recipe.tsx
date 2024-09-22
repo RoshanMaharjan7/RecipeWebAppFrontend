@@ -15,6 +15,9 @@ import { useForm } from "react-hook-form";
 import RatingStars from "../../RatingStars";
 import { QueryClient, useQueryClient } from "@tanstack/react-query";
 import FavouritesButton from "../../utils/FavouritesButton";
+import DeleteButton from "../../utils/DeleteButton";
+import RatingButton from "../../utils/RatingButton";
+import toast from "react-hot-toast";
 
 const Recipe = () => {
   const { id } = useParams();
@@ -29,7 +32,9 @@ const Recipe = () => {
   //   return accumulator + review.stars;
   // }, 0) / reviews.length : 0
 
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, setValue, watch, reset } = useForm();
+
+  const stars = watch("stars");
 
   const { mutate } = usePostReview();
 
@@ -37,13 +42,14 @@ const Recipe = () => {
     const postData = { ...data, recipeId: RecipeData?.data._id };
     mutate(postData, {
       onSuccess: () => {
-        console.log("success");
+        toast.success("Review Posted");
+        reset();
         queryClient.invalidateQueries({
           queryKey: ["reviews", id],
         });
       },
       onError: () => {
-        console.log("error");
+        toast.error("Error Posting Review");
       },
     });
   };
@@ -56,7 +62,8 @@ const Recipe = () => {
             {RecipeData?.data.title}
           </h2>
           <span className="flex gap-8">
-            <RatingStars rating={4} className="text-xl" />
+            <DeleteButton chefId={RecipeData?.data.chief._id} recipeId={RecipeData?.data._id}/>
+            <RatingStars rating={RecipeData?.data.ratings} className="text-xl" />
            <FavouritesButton recipeId={RecipeData?.data._id} />
           </span>
         </div>
@@ -124,11 +131,12 @@ const Recipe = () => {
             <label htmlFor="" className="font-righteous text-[24px]">
               Rate this Recipe:{" "}
             </label>
-            <input
+            {/* <input
               type="text"
               {...register("stars", { required: true })}
               className="bg-slate-100 border border-slate-300 rounded-md text-[16px] py-2 px-3 flex-grow"
-            />
+            /> */}
+            <RatingButton stars={stars} setValue={setValue} />
           </span>
           <span className="flex flex-col md:flex-row gap-x-12">
             <label htmlFor="" className="font-righteous text-[24px]">

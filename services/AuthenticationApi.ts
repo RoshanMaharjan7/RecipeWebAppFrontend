@@ -30,3 +30,13 @@ export const useGetCurrentUser = () => {
     },
   });
 };
+
+export const useGetUserProfile = () => {
+  return useQuery<any>({
+    queryKey: ["profile"],
+    queryFn: async () => {
+      const response = await Axios.get("/users/profile");
+      return await response.data;
+    },
+  });
+};

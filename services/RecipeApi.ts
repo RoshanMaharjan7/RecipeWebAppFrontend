@@ -130,3 +130,14 @@ export const useRemoveFromFavorites = () => {
     },
   });
 }
+
+
+export const useDeleteRecipeById = () => {
+  return useMutation({
+    mutationFn: async (postData:any) => {
+      console.log('/recipe/' + postData.recipeId);
+      const res =  await Axios.delete('/recipe/' + postData.recipeId);
+      return await res.data;
+    },
+  });
+}

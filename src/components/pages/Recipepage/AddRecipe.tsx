@@ -151,8 +151,7 @@ const AddRecipe = () => {
                 {categoryField.map((category, index) => (
                   <li key={index} className="flex gap-4">
                     <span className="px-2 py-1 bg-slate-200 flex items-center gap-1 rounded-md">
-                      
-                    //@ts-ignore {category.categoryName}{" "}
+                    {category.categoryName}{" "}
                       <button
                         type="button"
                         onClick={() => removeCategory(index)}
