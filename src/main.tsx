@@ -14,6 +14,7 @@ import Recipe from "./components/pages/Recipepage/Recipe.tsx";
 import AddRecipe from "./components/pages/Recipepage/AddRecipe.tsx";
 import { store } from "./providers/store";
 import { Provider } from "react-redux";
+import { Toaster } from 'react-hot-toast';
 
 const router = createBrowserRouter([
   {
@@ -59,6 +60,7 @@ createRoot(document.getElementById("root")!).render(
     <QueryClientProvider client={new QueryClient()}>
       <Provider store={store}>
         <RouterProvider router={router} />
+        <Toaster/>
       </Provider>
     </QueryClientProvider>
   </StrictMode>

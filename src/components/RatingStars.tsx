@@ -1,17 +1,18 @@
 import { PiStarFill } from "react-icons/pi";
 import { PiStarBold } from "react-icons/pi";
+import { cn } from "../lib/utils";
 
 const InActiveRating = () => {
-  return <PiStarBold className="text-[16px]" />;
+  return <PiStarBold/>;
 };
 
 const ActiveRating = () => {
-  return <PiStarFill className="text-[#FFB800] text-[16px]" />;
+  return <PiStarFill className="text-[#FFB800]" />;
 };
 
-const RatingStars = ({ rating }: { rating: number }) => {
+const RatingStars = ({ rating, className }: { rating: number, className?: string }) => {
   return (
-    <div className="flex items-center">
+    <div className={cn("flex items-center text-[16px]", className)}>
       {rating>=1 ? <ActiveRating /> : <InActiveRating/>}
       {rating>=2 ? <ActiveRating /> : <InActiveRating/>}
       {rating>=3 ? <ActiveRating /> : <InActiveRating/>}

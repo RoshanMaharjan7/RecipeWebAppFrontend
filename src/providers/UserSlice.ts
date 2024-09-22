@@ -29,16 +29,17 @@ export const userSlice = createSlice({
       state.favoriteRecipes = action.payload.favoriteRecipes;
     },
     logout: (state) => {
-        state.id = "";
-        state.fullName = "";
-        state.email = "";
-        state.role = "";
-        state.favoriteRecipes = [];
-        },
+        console.log("Logging out");
+      state.id = "";
+      state.fullName = "";
+      state.email = "";
+      state.role = "";
+      state.favoriteRecipes = [];
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { setUser,logout } = userSlice.actions;
+export const { setUser, logout } = userSlice.actions;
 
 export default userSlice.reducer;

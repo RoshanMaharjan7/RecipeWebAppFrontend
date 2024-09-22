@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const HomeBanner = () => {
   return (
     <div className="flex h-fit lg:h-[79vh] justify-between py-[20px] md:py-0">
@@ -12,7 +14,7 @@ const HomeBanner = () => {
           world of delicious possibilites today!
         </p>
 
-        <button className="w-fit bg-[#fb780e] px-4 py-3 rounded-full font-medium text-[#F8F8F8]">Explore Recipes</button>
+        <Link to='/recipes' className="w-fit bg-[#fb780e] px-4 py-3 rounded-full font-medium text-[#F8F8F8]">Explore Recipes</Link>
       </div>
       <div className="hidden lg:block w-[50%] bg-[url('../HomeImage.jpg')] bg-cover"></div>
     </div>

@@ -18,7 +18,8 @@ const RecipeCard = ({
 }) => {
   console.log(category);
   return (
-    <div className="bg-white rounded-lg flex-grow flex flex-col border border-grey-200 shadow-xl gap-2 h-fit">
+     <Link
+    to={`/recipes/${id}`} className="bg-white rounded-lg flex-grow flex flex-col border border-grey-200 shadow-lg hover:shadow-2xl gap-2 h-fit">
       <img
         src={recipeImage}
         alt=""
@@ -27,8 +28,8 @@ const RecipeCard = ({
       <div className="flex flex-col  justify-between h-full flex-grow gap-3 px-4 py-2">
         <div className="space-x-2">
             {
-              category && (category.map(({categoryName}:{categoryName:string})=>(
-                <span className="bg-[#ECECEC] font-medium px-2 py-1 rounded-full text-[12px] text-[#00000099]">{categoryName}</span>
+              category && (category.map(({cateogoryId, categoryName}:{cateogoryId:string, categoryName:string})=>(
+                <span key={cateogoryId} className="bg-[#ECECEC] font-medium px-2 py-1 rounded-full text-[12px] text-[#00000099]">{categoryName}</span>
               )))
             }
         </div>
@@ -50,7 +51,7 @@ const RecipeCard = ({
           </button>
         </span>
       </div>
-    </div>
+    </Link>
   );
 };
 

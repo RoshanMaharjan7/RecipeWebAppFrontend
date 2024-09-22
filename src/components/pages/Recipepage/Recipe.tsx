@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import Layout from "../../Layout";
 import {
   useGetRecipeById,
+  useGetReviewByRecipe,
   usePostReview,
 } from "../../../../services/RecipeApi";
 import { MdFavoriteBorder } from "react-icons/md";
@@ -11,25 +12,39 @@ import { FaInstagramSquare } from "react-icons/fa";
 import { SiGmail } from "react-icons/si";
 import { FaWhatsappSquare } from "react-icons/fa";
 import { useForm } from "react-hook-form";
+import RatingStars from "../../RatingStars";
+import { QueryClient, useQueryClient } from "@tanstack/react-query";
+import FavouritesButton from "../../utils/FavouritesButton";
 
 const Recipe = () => {
   const { id } = useParams();
+  const queryClient = useQueryClient();
 
   const { data: RecipeData } = useGetRecipeById(id || "");
+  const { data: ReviewData } = useGetReviewByRecipe(id || "");
+  console.log(ReviewData?.data);
+  console.log(RecipeData?.data.ratings)
+  // const averageRating = ReviewData?.data.reviews.length > 0 ? 
+  // ReviewData?.data.reviews.reduce((accumulator, review) => {
+  //   return accumulator + review.stars;
+  // }, 0) / reviews.length : 0
 
   const { register, handleSubmit } = useForm();
 
   const { mutate } = usePostReview();
 
   const onSubmit = (data: any) => {
-    const postData = {...data, recipeId: RecipeData?.data._id}
+    const postData = { ...data, recipeId: RecipeData?.data._id };
     mutate(postData, {
       onSuccess: () => {
         console.log("success");
+        queryClient.invalidateQueries({
+          queryKey: ["reviews", id],
+        });
       },
-      onError: ()=>{
+      onError: () => {
         console.log("error");
-      }
+      },
     });
   };
 
@@ -37,37 +52,57 @@ const Recipe = () => {
     <Layout>
       <main className="space-y-10 my-2 md:my-6 mb-10">
         <div className="flex justify-between items-center">
-          <h2 className="text-[36px] md:text-[48px]">
+          <h2 className="text-[28px] sm:text-[36px] md:text-[48px]">
             {RecipeData?.data.title}
           </h2>
-          <button className="flex items-center justify-center border-2 border-black p-2 rounded-full">
-            <MdFavoriteBorder className="text-[20px] md:text-[24px]" />
-          </button>
+          <span className="flex gap-8">
+            <RatingStars rating={4} className="text-xl" />
+           <FavouritesButton recipeId={RecipeData?.data._id} />
+          </span>
         </div>
 
-        <div className="flex flex-col-reverse lg:flex-row justify-between gap-10">
-          <section className="flex flex-col gap-6">
-            <h4 className="text-[28px]">Ingredients</h4>
-            <span className="flex flex-col gap-2">
-              {RecipeData?.data.ingredients.map(
-                (ingredient: any, index: number) => (
-                  <>
-                  <p key={ingredient._id}>{ingredient.quantity}</p>
-                  <p key={index} className="text-[18px]">
-                    {ingredient.name}
-                  </p>
-                  </>
-                )
-              )}
-            </span>
+        <div className="flex flex-col-reverse lg:flex-row justify-between gap-16">
+          <section className="flex flex-col gap-16 lg:w-4/6">
+            <div className="flex flex-col gap-6">
+              <h4 className="text-[28px]">Ingredients</h4>
+              <span className="flex flex-col gap-2">
+                {RecipeData?.data.ingredients.map((ingredient: any) => (
+                  <span
+                    key={ingredient._id}
+                    className="flex items-center gap-2"
+                  >
+                    <p className="text-[18px] font-semibold">
+                      {ingredient.name}
+                    </p>
+                    -<p>{ingredient.quantity}</p>
+                  </span>
+                ))}
+              </span>
+            </div>
+
+            <div className="space-y-6">
+              <h4 className="text-[28px]">Directions</h4>
+              <span className="flex flex-col gap-4">
+                {RecipeData?.data.directions.map(
+                  (ingredient: any, index: number) => (
+                    <span key={index} className="flex gap-4 items-center">
+                      <p className="font-righteous text-[36px]">{index + 1}</p>
+                      {ingredient}
+                    </span>
+                  )
+                )}
+              </span>
+            </div>
           </section>
-          <section className="flex flex-col gap-4">
+          <section className="flex flex-col items-center lg:items-start gap-4 lg:w-2/6">
             <img
               src={RecipeData?.data.recipeImage}
               alt={RecipeData?.data.tile}
               className="max-h-[280px] w-[400px] rounded-xl"
             />
-            <p className="font-righteous">{RecipeData?.data.description}</p>
+            <p className="text-sm font-medium">
+              {RecipeData?.data.description}
+            </p>
             <span className="flex flex-col gap-2">
               <p className="font-righteous text-[14px]">Share to:</p>
               <span className="flex gap-6">
@@ -79,19 +114,6 @@ const Recipe = () => {
               </span>
             </span>
           </section>
-        </div>
-        <div className="space-y-6">
-          <h4 className="text-[28px]">Directions</h4>
-          <span className="flex flex-col gap-2">
-            {RecipeData?.data.directions.map(
-              (ingredient: any, index: number) => (
-                <span key={index} className="flex gap-4 items-center">
-                  <p className="font-righteous text-[36px]">{index + 1}</p>
-                  {ingredient}
-                </span>
-              )
-            )}
-          </span>
         </div>
 
         <form
@@ -123,18 +145,30 @@ const Recipe = () => {
           </button>
         </form>
 
-        <div>
+        <div className="">
           <h4 className="text-[28px]">All Reviews</h4>
-          {
-            RecipeData?.data.reviews.map((review:any) => (
-              <>
-              <p>{review.stars}</p>
+          {ReviewData?.data.map((review: any) => (
+            <div
+              key={review._id}
+              className="border-b-2 border-black/30 space-y-3 py-4"
+            >
+              <span className="flex gap-4 items-center">
+                <img
+                  src={`https://avatar.iran.liara.run/username?username=${review.reviewer.fullName}`}
+                  alt={review.reviewer.fullName}
+                  width={50}
+                  height={50}
+                />
+                <p className="text-lg font-medium">
+                  {review.reviewer.fullName}
+                </p>
+              </span>
+              <RatingStars rating={review.stars} />
               <p>{review.reviewText}</p>
-              <p>{review.reviewer}</p>
-              </>
-            ))
-          }
-          dssd
+            </div>
+          ))}
+
+          {RecipeData?.data.reviews.length === 0 && <p>No reviews yet</p>}
         </div>
       </main>
     </Layout>

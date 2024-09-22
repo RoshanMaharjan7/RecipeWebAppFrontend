@@ -7,6 +7,7 @@ import { useGetAllRecipes } from "../../../../services/RecipeApi";
 const RecipePage = () => {
 
   const {data: recipeData } = useGetAllRecipes()
+  console.log(recipeData?.data)
 
   return (
     <Layout>
@@ -15,8 +16,8 @@ const RecipePage = () => {
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-7 py-[20px] md:py-[40px]">
         {
-          recipeData?.data.map(({_id,title, rating, recipeImage, category}:{_id:string,title:string, rating: string, recipeImage: string, category:any})=> (
-            <RecipeCard key={_id} id={_id} title={title} rating={Number(rating)} recipeImage={recipeImage} category={category}/>
+          recipeData?.data.map(({_id,title, ratings, recipeImage, category}:{_id:string,title:string, ratings: number, recipeImage: string, category:any})=> (
+            <RecipeCard key={_id} id={_id} title={title} rating={ratings} recipeImage={recipeImage} category={category}/>
           ))
         }
       </div>

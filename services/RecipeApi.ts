@@ -88,3 +88,45 @@ export const useCreateCategory = () => {
     },
   });
 }
+
+export const useGetReviewByRecipe = (recipeId: string) => {
+  return useQuery<any>({
+    queryKey: ["reviews", recipeId],
+    queryFn: async () => {
+      const response = await Axios.get(`/reviews/recipe/${recipeId}`);
+      return await response.data;
+    },
+  });
+}
+
+// favourites
+export const useGetFavoriteRecipes = () => {
+  return useQuery<any>({
+    queryKey: ["favorites"],
+    queryFn: async () => {
+      const response = await Axios.get('/users/favourites');
+      return await response.data;
+    },
+  });
+}
+
+export const useAddToFavorites = () => {
+  return useMutation({
+    mutationFn: async (postData:any) => {
+      console.log(postData);
+      const res =  await Axios.post('/users/favourites', postData);
+      return await res.data;
+    },
+  });
+}
+
+
+export const useRemoveFromFavorites = () => {
+  return useMutation({
+    mutationFn: async (postData:any) => {
+      console.log(postData);
+      const res =  await Axios.patch('/users/favourites', postData);
+      return await res.data;
+    },
+  });
+}
