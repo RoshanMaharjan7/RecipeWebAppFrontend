@@ -15,7 +15,7 @@ const DeleteButton = ({chefId, recipeId}:{chefId:any, recipeId: string}) => {
     const [showDelete, setShowDelete] = useState(false);
 
     useEffect(() => {
-        if (currentUser && currentUser.data.id === chefId) {
+        if (currentUser && currentUser.data.id === chefId || currentUser.data.role === 'admin') {
           
             setShowDelete(true);
         }

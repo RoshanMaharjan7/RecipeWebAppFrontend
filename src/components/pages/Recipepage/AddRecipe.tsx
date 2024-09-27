@@ -5,6 +5,7 @@ import { IoAddCircle } from "react-icons/io5";
 import { RxCross1 } from "react-icons/rx";
 import CategorySearchBar from "../../CategorySearch";
 import { useCreateRecipe } from "../../../../services/RecipeApi";
+import toast from "react-hot-toast";
 
 type FormValues = {
   title: string;
@@ -16,7 +17,7 @@ type FormValues = {
 };
 
 const AddRecipe = () => {
-  const { register, handleSubmit, control } = useForm<FormValues>({
+  const { register, handleSubmit, control, reset } = useForm<FormValues>({
     defaultValues: {
       title: "",
       description: "",
@@ -67,9 +68,12 @@ const AddRecipe = () => {
     };
     console.log(postData);
     mutate(postData, {
-      onSuccess: (data) => {
-        console.log(data);
+      onSuccess: () => {
+        toast.success("Recipe Added Successfully");
       },
+      onError: () => {
+        toast.error("Error Adding Recipe");
+      }
     });
   };
 

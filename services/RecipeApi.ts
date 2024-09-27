@@ -141,3 +141,14 @@ export const useDeleteRecipeById = () => {
     },
   });
 }
+
+export const useGetMyRecipes = () => {
+  return useQuery<any>({
+    queryKey: ["myrecipes"],
+    queryFn: async () => {
+      const response = await Axios.get('/users/your-recipes');
+      console.log(response);
+      return await response.data;
+    },
+  });
+}

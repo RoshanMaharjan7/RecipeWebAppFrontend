@@ -40,3 +40,13 @@ export const useGetUserProfile = () => {
     },
   });
 };
+
+export const useUpdateUserProfile = () => {
+  return useMutation({
+    mutationFn: async (postData:any) => {
+      console.log(postData);
+      const res = await Axios.patch("/users/"+ postData.id, postData);
+      return await res.data;
+    },
+  });
+}

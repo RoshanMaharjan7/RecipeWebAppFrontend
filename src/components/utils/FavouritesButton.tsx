@@ -25,6 +25,10 @@ const FavouritesButton = ({recipeId}:{recipeId:string}) => {
 
     const handleFavourite = (e:any) => {
         e.stopPropagation();
+        if(!favouritesData){
+            toast.error('Please login to add to favourites')
+            return
+        }
         if(isFavourite){
             removeFavourite({recipeId}, {onSuccess: () => {
                 setIsFavourite(false)

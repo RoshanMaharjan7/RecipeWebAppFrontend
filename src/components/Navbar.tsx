@@ -17,10 +17,13 @@ import {
 import { FaUser } from "react-icons/fa";
 import { HiOutlineLogout } from "react-icons/hi";
 import Cookies from "js-cookie";
-import { useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom";
+import { useQueryClient } from "@tanstack/react-query";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const QueryClient = useQueryClient();
   const userData = useSelector((state: RootState) => state.user);
   console.log(userData);
   const dispatch = useDispatch();
@@ -38,14 +41,19 @@ const Navbar = () => {
   const handleLogout = () => {
     dispatch(logout());
     Cookies.remove("token");
+    toast.success("Logged Out Successfully");
+    QueryClient.removeQueries();
     refetch();
-  }
+  };
 
   return (
     <nav className="flex justify-between items-center py-[20px] gap-10">
+      <NavLink to={'/'}>
       <h1 className="drop-shadow-[0_35px_35px_rgba(0,0,0,0.25)] text-[#fb780e] text-[24px] sm:text-3xl">
         TasteTreasure
       </h1>
+      </NavLink>
+      
       <span className="hidden lg:flex justify-evenly flex-grow  xl:max-w-[40rem] ">
         <NavLink
           to={"/"}
@@ -64,17 +72,7 @@ const Navbar = () => {
           className="text-[18px] font-medium"
         >
           Recipes
-        </NavLink>
-
-        <NavLink
-          to={"/meal-plan"}
-          style={({ isActive }) => {
-            return isActive ? { color: "#fb780e", fontWeight: "600" } : {};
-          }}
-          className="text-[18px] font-medium"
-        >
-          Meal Plan
-        </NavLink>
+        </NavLink>  
 
         <NavLink
           to={"/contactus"}
@@ -115,8 +113,20 @@ const Navbar = () => {
             <DropdownMenuContent>
               <DropdownMenuLabel>My Account</DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <DropdownMenuItem className="flex gap-2 cursor-pointer" onClick={() => navigate('/profile')}><FaUser size={16}/>Profile</DropdownMenuItem>
-              <DropdownMenuItem className="flex gap-2 cursor-pointer" onClick={handleLogout}><HiOutlineLogout size={18}/>Logout</DropdownMenuItem>
+              <DropdownMenuItem
+                className="flex gap-2 cursor-pointer"
+                onClick={() => navigate("/profile")}
+              >
+                <FaUser size={16} />
+                Profile
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                className="flex gap-2 cursor-pointer"
+                onClick={handleLogout}
+              >
+                <HiOutlineLogout size={18} />
+                Logout
+              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         )}

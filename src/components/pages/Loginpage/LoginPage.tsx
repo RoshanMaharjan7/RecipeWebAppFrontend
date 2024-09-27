@@ -7,6 +7,7 @@ import { useState } from "react";
 import { Axios } from "../../../../services/AxiosInstance";
 import Cookies from "js-cookie";
 import { useLogin } from "../../../../services/AuthenticationApi";
+import toast from "react-hot-toast";
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -25,8 +26,12 @@ const LoginPage = () => {
       onSuccess: (data) => {
         console.log(data)
         Cookies.set("token", data.token);
+        toast.success("Logged In Successfully");
         navigate('/')
       },
+      onError: () => {
+        toast.error("Invalid Credentials");
+      }
     });
   };
   return (

@@ -5,7 +5,6 @@ import {
   useGetReviewByRecipe,
   usePostReview,
 } from "../../../../services/RecipeApi";
-import { MdFavoriteBorder } from "react-icons/md";
 import { FaFacebook } from "react-icons/fa";
 import { FaFacebookMessenger } from "react-icons/fa";
 import { FaInstagramSquare } from "react-icons/fa";
@@ -13,7 +12,7 @@ import { SiGmail } from "react-icons/si";
 import { FaWhatsappSquare } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import RatingStars from "../../RatingStars";
-import { QueryClient, useQueryClient } from "@tanstack/react-query";
+import {  useQueryClient } from "@tanstack/react-query";
 import FavouritesButton from "../../utils/FavouritesButton";
 import DeleteButton from "../../utils/DeleteButton";
 import RatingButton from "../../utils/RatingButton";
@@ -47,6 +46,10 @@ const Recipe = () => {
         queryClient.invalidateQueries({
           queryKey: ["reviews", id],
         });
+        queryClient.invalidateQueries({
+          queryKey: [id],
+        });
+
       },
       onError: () => {
         toast.error("Error Posting Review");
@@ -110,6 +113,7 @@ const Recipe = () => {
             <p className="text-sm font-medium">
               {RecipeData?.data.description}
             </p>
+            <p className="font-semibold text-xl text-[#fb780e]">Recipe By: <span className="underline text-lg text-black">{RecipeData?.data.chief.fullName}</span></p>
             <span className="flex flex-col gap-2">
               <p className="font-righteous text-[14px]">Share to:</p>
               <span className="flex gap-6">

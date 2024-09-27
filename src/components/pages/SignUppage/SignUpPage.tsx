@@ -2,12 +2,14 @@ import { useState } from "react";
 import LoginLayout from "../../LoginLayout";
 import { useForm } from "react-hook-form";
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaUserAlt } from "react-icons/fa";
 import { PiChefHatBold } from "react-icons/pi";
 import { useSignUp } from "../../../../services/AuthenticationApi";
+import toast from "react-hot-toast";
 
 const SignUpPage = () => {
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const {
     register,
@@ -22,7 +24,12 @@ const SignUpPage = () => {
     mutate(data, {
       onSuccess: (data) => {
         console.log(data);
-      },
+        toast.success("Account Created Successfully");
+        navigate("/login");
+      },onError: (error) => {
+        console.log(error);
+        toast.error("Error Creating Account");
+      }
     });
   };
 
