@@ -29,7 +29,7 @@ const AddRecipe = () => {
   });
 
   const {
-    fields: categoryField,
+    fields : categoryField,
     append: appendCategory,
     remove: removeCategory,
   } = useFieldArray<FormValues>({
@@ -155,7 +155,7 @@ const AddRecipe = () => {
                 {categoryField.map((category, index) => (
                   <li key={index} className="flex gap-4">
                     <span className="px-2 py-1 bg-slate-200 flex items-center gap-1 rounded-md">
-                    {category.categoryName}{" "}
+                    {category.id}{" "}
                       <button
                         type="button"
                         onClick={() => removeCategory(index)}
