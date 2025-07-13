@@ -17,7 +17,7 @@ type FormValues = {
 };
 
 const AddRecipe = () => {
-  const { register, handleSubmit, control, reset } = useForm<FormValues>({
+  const { register, handleSubmit, control } = useForm<FormValues>({
     defaultValues: {
       title: "",
       description: "",
@@ -194,7 +194,7 @@ const AddRecipe = () => {
               </label>
             </span>
             <ul className="space-y-1">
-              {ingredientsField.map((field, index) => (
+              {ingredientsField.map((_, index) => (
                 <li key={index} className="flex gap-4">
                   <input
                     type="text"
@@ -252,7 +252,7 @@ const AddRecipe = () => {
               </label>
             </span>
             <ul className="space-y-1">
-              {directionsField.map((field, index) => (
+              {directionsField.map((_, index) => (
                 <li key={index} className="flex gap-4">
                   <input
                     type="text"

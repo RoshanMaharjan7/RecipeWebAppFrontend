@@ -6,7 +6,6 @@ import { IoLogoInstagram } from "react-icons/io5";
 import { FaXTwitter } from "react-icons/fa6";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { useUpdateUserProfile } from "../../../../services/AuthenticationApi";
 
 const ContactUsPage = () => {
     const {register, handleSubmit, reset} = useForm();

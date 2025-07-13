@@ -3,7 +3,7 @@ import {
   useGetUserProfile,
   useUpdateUserProfile,
 } from "../../../../services/AuthenticationApi";
-import { PencilLine, Pizza, User } from "lucide-react";
+import { PencilLine, Pizza } from "lucide-react";
 
 import {
   Dialog,

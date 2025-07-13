@@ -1,6 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
 import RatingStars from "./RatingStars";
-import { MdFavoriteBorder } from "react-icons/md";
 import FavouritesButton from "./utils/FavouritesButton";
 // import { MdFavorite } from "react-icons/md";
 

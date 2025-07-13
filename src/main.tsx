@@ -16,7 +16,6 @@ import { store } from "./providers/store";
 import { Provider } from "react-redux";
 import { Toaster } from 'react-hot-toast';
 import ProfilePage from "./components/pages/ProfilePage/ProfilePage.tsx";
-import { Contact } from "lucide-react";
 import ContactUsPage from "./components/pages/ContactusPage/ContactUsPage.tsx";
 
 const router = createBrowserRouter([
